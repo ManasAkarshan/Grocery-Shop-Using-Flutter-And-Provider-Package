@@ -12,12 +12,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => CartModel(),
+    return MultiProvider(                // For multiple providers
+      providers: [
+        ChangeNotifierProvider(
+          create: (context)=>CartModel()
+        ),
+      ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         home: IntroPage(),
       ),
     );
+
+    // OR
+
+    // ChangeNotifierProvider(              // For single provider
+    //   create: (context) => CartModel(),
+    //   child: const MaterialApp(
+    //     debugShowCheckedModeBanner: false,
+    //     home: IntroPage(),
+    //   ),
+    // );
   }
 }
